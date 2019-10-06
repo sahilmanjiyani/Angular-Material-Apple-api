@@ -24,10 +24,7 @@ export class ApiService {
         //     this.subject.next(result);
         // })
         //this.subject.subscribe(result => console.log(result + " in service"));
-        let loaded = this.musicLoad(searched);
-        loaded.subscribe(result => {
-                this.subject.next(result);
-            });
+        let loaded = null;
         
         switch (mediaType) {
             case 'music':
@@ -35,6 +32,8 @@ export class ApiService {
                 loaded.subscribe(result => {
                         this.subject.next(result);
                     });
+                    console.log('in music')
+
                 break;
 
             case 'musicVideo':
@@ -42,6 +41,7 @@ export class ApiService {
                 loaded.subscribe(result => {
                         this.subject.next(result);
                     });
+                    console.log('in music video')
                 break;
 
             case 'movie':
@@ -49,6 +49,8 @@ export class ApiService {
                 loaded.subscribe(result => {
                         this.subject.next(result);
                     });
+                    console.log('in movie')
+
                 break;
         
             default:
