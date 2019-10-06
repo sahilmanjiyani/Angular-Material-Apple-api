@@ -11,21 +11,41 @@ export class MovieComponent implements OnInit {
   
   movieObj = [];
   subscription: Subscription;
+  hideError: boolean;
 
   constructor( private apiService: ApiService ) { }
 
   ngOnInit() {
 
+    this.hideError = true;
+
     // subscription to search requested music list
-    this.subscription = this.apiService.subject.subscribe(re => {
-      this.movieObj = re["results"];
-    });
+    this.subscription = this.apiService.movieSubject
+                          .subscribe(re => {
+                              this.hideError = true;
+                              this.movieObj = re["results"];
+                            }, 
+                            error => {
+                              console.log(error);
+                              this.hideError = false;
+                            });
     
    // subscription to default music list
-    this.apiService.moviesLoad()
-                    .subscribe( resObj => {
-                      this.movieObj = resObj['results'];
-                    });
+   this.subscription = this.apiService.moviesLoad()
+                        .subscribe( resObj => {
+                          this.hideError = true;
+                          this.movieObj = resObj['results'];
+                        }, 
+                        error => {
+                          console.log(error);
+                          this.hideError = false;
+                        });
+
+    
   }
 
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
+  
 }

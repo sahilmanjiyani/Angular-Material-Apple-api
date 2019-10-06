@@ -8,7 +8,9 @@ export class ApiService {
 
     constructor( private http: HttpClient ) {}
 
-    subject = new Subject();
+    musicSubject = new Subject();
+    musicVideoSubject = new Subject();
+    movieSubject = new Subject();
     
     serviceUpdate(searched: string, mediaType: string) {
         // const loaded =  this.http
@@ -24,30 +26,30 @@ export class ApiService {
         //     this.subject.next(result);
         // })
         //this.subject.subscribe(result => console.log(result + " in service"));
-        let loaded = null;
         
+        // select type of media to be updated
         switch (mediaType) {
             case 'music':
-                loaded = this.musicLoad(searched);
-                loaded.subscribe(result => {
-                        this.subject.next(result);
+                const updateMusic = this.musicLoad(searched);
+                updateMusic.subscribe(result => {
+                        this.musicSubject.next(result);
                     });
                     console.log('in music')
 
                 break;
 
             case 'musicVideo':
-                loaded = this.musicVideoLoad(searched);
-                loaded.subscribe(result => {
-                        this.subject.next(result);
+                const updateMusicVideo = this.musicVideoLoad(searched);
+                updateMusicVideo.subscribe(result => {
+                        this.musicVideoSubject.next(result);
                     });
                     console.log('in music video')
                 break;
 
             case 'movie':
-                loaded = this.moviesLoad(searched);
-                loaded.subscribe(result => {
-                        this.subject.next(result);
+                const updateMovie = this.moviesLoad(searched);
+                updateMovie.subscribe(result => {
+                        this.movieSubject.next(result);
                     });
                     console.log('in movie')
 

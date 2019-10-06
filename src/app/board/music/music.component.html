@@ -1,3 +1,5 @@
+<mat-card class="errorEl" *ngIf="!hideError">Unable to Process request</mat-card>
 <app-music-detail  
+  #elseBlock 
   *ngFor="let item of musicObj; let i = index"
   [itemDetail]="item" ></app-music-detail>
