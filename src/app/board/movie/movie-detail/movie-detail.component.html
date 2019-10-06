@@ -1,0 +1,17 @@
+<mat-card class="example-card">
+  <mat-card-header>
+      <mat-card-title>{{ itemDetail.trackName.slice(0,10) + '...' }}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <img 
+          class="music-cover-img" 
+          mat-card-image 
+          [src]="itemDetail.artworkUrl100"  
+          [alt]="itemDetail.collectionName" >
+    </mat-card-content>
+    <mat-card-actions>
+      <button 
+          mat-stroked-button
+          (click)="openDialog()" >Play</button>
+    </mat-card-actions>
+  </mat-card>

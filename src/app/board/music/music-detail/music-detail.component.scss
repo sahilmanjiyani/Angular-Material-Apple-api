@@ -1,0 +1,26 @@
+.music-cover-img {
+    height: 60px;
+    width: 60px;
+}
+
+mat-card {
+    margin: 0.25em;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    width: 10em;
+    height: 12em;
+}
+
+mat-card-title {
+    font-weight: 400
+}
+
+mat-card-actions {
+    display: flex;
+}
+
+mat-card-content {
+    margin: 1em;
+    margin-bottom: 0;
+}

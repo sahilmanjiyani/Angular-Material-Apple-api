@@ -1,0 +1,12 @@
+<h1 mat-dialog-title>{{item.artistName}}</h1>
+<div mat-dialog-content>
+  <p>{{ item.trackName }}</p>
+  <video #myVideo width="800px" height="350px" controls  >
+      <source [src]="item.previewUrl" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </video>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()" >No Thanks</button>
+  <button mat-button  cdkFocusInitial>Ok</button>
+</div>

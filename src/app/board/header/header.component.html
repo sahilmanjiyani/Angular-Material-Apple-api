@@ -1,0 +1,42 @@
+<mat-toolbar color="accent" class="nav-bar">
+    
+  <span class="app-title">My Music App</span>
+  
+  <!-- This fills the remaining space of the current row -->
+  <span class="fill-remaining-space" >
+    <form class="example-form" #searchForm="ngForm" (ngSubmit)="onSubmit(searchForm)" >
+      <mat-form-field class="media-type">
+        <mat-label>Select Media: </mat-label>
+        <mat-select
+          ngModel
+          name="mediaSelect">
+          <mat-option 
+            *ngFor="let media of mediaArray" 
+            [value]="media.value">
+            {{media.viewValue}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <input 
+          type="text" 
+          placeholder="Search here" 
+          aria-label="Number" 
+          matInput 
+          name="searchText"
+          ngModel
+          [matAutocomplete]="auto"> 
+          <mat-autocomplete #auto="matAutocomplete">
+          <mat-option *ngFor="let option of options" [value]="option">
+            {{option}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+      <button type="submit" mat-raised-button  >Search</button>
+     
+    </form>
+  </span>
+
+
+  </mat-toolbar>
+  
