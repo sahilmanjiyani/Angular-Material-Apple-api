@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { MusicComponent } from "../board/music/music.component";
-
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-board',
@@ -8,10 +7,16 @@ import { MusicComponent } from "../board/music/music.component";
   styleUrls: ['./board.component.scss']
 })
 export class BoardComponent implements OnInit {
+
+  @Output() edit = new Subject<{type: string, change: boolean}>();
   
-  constructor() { }
+  constructor() {}
 
   ngOnInit() {
+  }
+
+  editList(type: string, change: boolean) {
+    this.edit.next({ type, change });
   }
 
 }

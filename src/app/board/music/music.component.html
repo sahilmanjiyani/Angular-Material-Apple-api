@@ -1,5 +1,5 @@
-<mat-card class="errorEl" *ngIf="!hideError">Unable to Process request</mat-card>
-<app-music-detail  
+<mat-card class="errorEl" *ngIf="!(loadMusic.length >= 1)">Unable to Process request</mat-card>
+<app-music-detail
   #elseBlock 
-  *ngFor="let item of musicObj; let i = index"
+  *ngFor="let item of loadMusic; let i = index"
   [itemDetail]="item" ></app-music-detail>

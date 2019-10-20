@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Subject, Observable, BehaviorSubject } from 'rxjs';
-import { load } from '@angular/core/src/render3';
+import { Subject } from 'rxjs';
 
 @Injectable()
 export class ApiService {
@@ -12,30 +11,15 @@ export class ApiService {
     musicVideoSubject = new Subject();
     movieSubject = new Subject();
     
-    serviceUpdate(searched: string, mediaType: string) {
-        // const loaded =  this.http
-        // .get<[{resultCounts, results}]>('https://itunes.apple.com/search', {
-        //     params: new HttpParams()
-        //                     .set('term', searched ? searched : 'coldPlay')
-        //                     .set('country', 'ca')
-        //                     .set('limit', '6')
-        //                     .set('media', 'music')
-        // })
-            
-        // loaded.subscribe(result => {
-        //     this.subject.next(result);
-        // })
-        //this.subject.subscribe(result => console.log(result + " in service"));
-        
-        // select type of media to be updated
+    serviceUpdate(searched: string = "Coldplay", mediaType: string) {
+      
         switch (mediaType) {
             case 'music':
                 const updateMusic = this.musicLoad(searched);
                 updateMusic.subscribe(result => {
                         this.musicSubject.next(result);
-                    });
+                });
                     console.log('in music')
-
                 break;
 
             case 'musicVideo':
@@ -64,18 +48,18 @@ export class ApiService {
     musicLoad(termSearched?: string) {
 
         return this.http
-            .get<[{resultCounts, results}]>('https://itunes.apple.com/search', {
-                params: new HttpParams()
-                                .set('term', termSearched ? termSearched : 'coldPlay')
-                                .set('country', 'ca')
-                                .set('limit', '6')
-                                .set('media', 'music')
-            })
+                    .get<[{resultCounts, results}]>('https://itunes.apple.com/search', {
+                        params: new HttpParams()
+                                        .set('term', termSearched)
+                                        .set('country', 'ca')
+                                        .set('limit', '50')
+                                        .set('media', 'music')
+                    });
     }
 
    
 
-        musicVideoLoad(searchQuery?: string) {
+    musicVideoLoad(searchQuery?: string) {
 
         return this.http
                     .get<[{resultCounts, results}]>('https://itunes.apple.com/search', {
@@ -85,7 +69,6 @@ export class ApiService {
                                         .set('limit', '6')
                                         .set('media', 'musicVideo')
                     });
-        
     }
 
 
