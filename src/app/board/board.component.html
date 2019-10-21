@@ -20,21 +20,24 @@
       <i 
         class="material-icons left" 
         mat-raised-button
-        (click)="editList('music', false )" >keyboard_arrow_left</i>
+        (click)="editList('musicVideo', false )" >keyboard_arrow_left</i>
       <app-music-video [changeList]="edit" class="appMusicVideo media" ></app-music-video>
-      <i class="material-icons right">keyboard_arrow_right</i>
+      <i class="material-icons right" (click)="editList('musicVideo', true)" >keyboard_arrow_right</i>
     </div>
 
     <div class="third view-horizontal">
         <i class="material-icons movie-icon">tv</i>
-        <i class="material-icons left" mat-raised-button >keyboard_arrow_left</i>
+        <i 
+          class="material-icons left" 
+          mat-raised-button
+          (click)="editList('movie', false)" >keyboard_arrow_left</i>
         <app-movie [changeList]="edit" class="appMusic media" ></app-movie>
-        <i class="material-icons right">keyboard_arrow_right</i>
+        <i class="material-icons right" (click)="editList('movie', true)" >keyboard_arrow_right</i>
     </div>
   </div>
 </div>
 
-<mat-toolbar color="accent" class="nav-bar">
+<mat-toolbar color="accent" class="nav-bar footer">
     <span>Developed and Desiged by Sahil Manjiyani</span>
 </mat-toolbar>
 

@@ -27,9 +27,7 @@ export class MusicVideoComponent implements OnInit {
                           .subscribe(
                             res => {
                               this.musicVideoObj = res["results"];
-                              console.log(res);
                               this.loadMusic = this.musicVideoObj.slice(0,6);
-                              console.log(this.musicVideoObj);
                             }, 
                             error => {
                               console.log(error);
@@ -41,13 +39,14 @@ export class MusicVideoComponent implements OnInit {
     this.subscription = this.changeList
                           .subscribe(
                             ({type, change}) => {
-                             
-                              if ((this.counter < 7 && change) || (this.counter > 0 && !change)) {
-                                change ? this.counter++ : this.counter--;
+                              if (type == 'musicVideo') {
+                                if ((this.counter < 7 && change) || (this.counter > 0 && !change)) {
+                                  change ? this.counter++ : this.counter--;
+                                }
+                              
+                                this.loadMusic =  this.musicVideoObj
+                                                      .slice(this.counter * 6, (this.counter + 1) * 6);
                               }
-                             
-                              this.loadMusic =  this.musicVideoObj
-                                                    .slice(this.counter * 6, (this.counter + 1) * 6);
                             }, 
                             error => {
                               console.log(error);

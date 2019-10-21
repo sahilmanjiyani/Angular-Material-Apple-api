@@ -22,7 +22,6 @@ export class ApiService {
                 updateMusic.subscribe(result => {
                         this.musicSubject.next(result);
                 });
-                    console.log('in music')
                 break;
 
             case musicVideo:
@@ -30,7 +29,6 @@ export class ApiService {
                 updateMusicVideo.subscribe(result => {
                         this.musicVideoSubject.next(result);
                     });
-                    console.log('in music video')
                 break;
 
             case movie:
@@ -38,7 +36,6 @@ export class ApiService {
                 updateMovie.subscribe(result => {
                         this.movieSubject.next(result);
                     });
-                    console.log('in movie')
                 break;
         
             default:

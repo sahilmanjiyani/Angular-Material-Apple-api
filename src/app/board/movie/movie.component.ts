@@ -27,9 +27,7 @@ export class MovieComponent implements OnInit {
                           .subscribe(
                             res => {
                               this.movieObj = res["results"];
-                              console.log(res);
                               this.loadMusic = this.movieObj.slice(0,6);
-                              console.log(this.movieObj);
                             }, 
                             error => {
                               console.log(error);
@@ -40,11 +38,13 @@ export class MovieComponent implements OnInit {
     this.subscription = this.changeList
                             .subscribe(
                               ({type, change}) => {
-                                if ((this.counter < 7 && change) || (this.counter > 0 && !change)) {
-                                  change ? this.counter++ : this.counter--;
+                                if (type == 'music') {
+                                  if ((this.counter < 7 && change) || (this.counter > 0 && !change)) {
+                                    change ? this.counter++ : this.counter--;
+                                  }
+                                  this.loadMusic =  this.movieObj
+                                                        .slice(this.counter * 6, (this.counter + 1) * 6);
                                 }
-                                this.loadMusic =  this.movieObj
-                                                      .slice(this.counter * 6, (this.counter + 1) * 6);
                               }, 
                               error => {
                                 console.log(error);
