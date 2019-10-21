@@ -30,7 +30,6 @@ export class MusicComponent implements OnInit, OnDestroy {
                                   this.musicObj = res["results"];
                                   console.log(res);
                                   this.loadMusic = this.musicObj.slice(0,6);
-                                  console.log(this.musicObj);
                                 }, 
                                 error => {
                                   console.log(error);

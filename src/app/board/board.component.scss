@@ -1,6 +1,16 @@
-
+.header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 
+              0px 2px 2px 0px rgba(0, 0, 0, 0.14), 
+              0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+  z-index: 9999;
+}
 
 .main-container {
+  padding-top: 5em;
+
   .row {
     .view-horizontal {
       padding: 0.25em;
@@ -22,6 +32,18 @@
       }
       i.right {
         margin-left: -1em;
+      }
+
+      .music-icon {
+        color: #ff0000;
+      }
+      
+      .musicVideo-icon {
+        color: #0000ff;
+      }
+      
+      .movie-icon {
+        color: #00ff00;
       }
     }
   }

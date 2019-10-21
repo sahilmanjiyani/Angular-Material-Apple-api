@@ -1,29 +1,34 @@
-<app-header></app-header>
+<app-header class="header" ></app-header>
 
 <div class="main-container">
   <div class="row">
       
     <div class="first view-horizontal">
-      <i class="material-icons">music_note</i>
-      <i class="material-icons left" mat-raised-button (click)="editList('music', false)" >keyboard_arrow_left</i>
+      <i class="material-icons music-icon">music_note</i>
+      <i 
+        class="material-icons left" 
+        mat-raised-button 
+        (click)="editList('music', false)" 
+        >keyboard_arrow_left
+      </i>
       <app-music [changeList]="edit" class="appMusic media" ></app-music>
       <i class="material-icons right" (click)="editList('music', true)" >keyboard_arrow_right</i>
     </div>
     
     <div class="secone view-horizontal">
-      <i class="material-icons">videocam</i>
+      <i class="material-icons musicVideo-icon">videocam</i>
       <i 
         class="material-icons left" 
         mat-raised-button
         (click)="editList('music', false )" >keyboard_arrow_left</i>
-      <app-music-video class="appMusicVideo media" ></app-music-video>
+      <app-music-video [changeList]="edit" class="appMusicVideo media" ></app-music-video>
       <i class="material-icons right">keyboard_arrow_right</i>
     </div>
 
     <div class="third view-horizontal">
-        <i class="material-icons">tv</i>
+        <i class="material-icons movie-icon">tv</i>
         <i class="material-icons left" mat-raised-button >keyboard_arrow_left</i>
-        <app-movie class="appMusic media" ></app-movie>
+        <app-movie [changeList]="edit" class="appMusic media" ></app-movie>
         <i class="material-icons right">keyboard_arrow_right</i>
     </div>
   </div>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ApiService } from 'src/app/shared/api.service';
 import { Subscription } from 'rxjs';
 
@@ -10,37 +10,46 @@ import { Subscription } from 'rxjs';
 export class MovieComponent implements OnInit {
   
   movieObj = [];
+  loadMusic = [];
   subscription: Subscription;
-  hideError: boolean;
+  counter: number = 0;
+
+  @Input() changeList: any;
 
   constructor( private apiService: ApiService ) { }
 
   ngOnInit() {
 
-    this.hideError = true;
+    this.apiService.serviceUpdate('coldpaly', 'movie');
 
     // subscription to search requested music list
     this.subscription = this.apiService.movieSubject
-                          .subscribe(re => {
-                              this.hideError = true;
-                              this.movieObj = re["results"];
+                          .subscribe(
+                            res => {
+                              this.movieObj = res["results"];
+                              console.log(res);
+                              this.loadMusic = this.movieObj.slice(0,6);
+                              console.log(this.movieObj);
                             }, 
                             error => {
                               console.log(error);
-                              this.hideError = false;
-                            });
+                            }
+                          );
     
-   // subscription to default music list
-   this.subscription = this.apiService.moviesLoad()
-                        .subscribe( resObj => {
-                          this.hideError = true;
-                          this.movieObj = resObj['results'];
-                        }, 
-                        error => {
-                          console.log(error);
-                          this.hideError = false;
-                        });
-
+    // subscription to default music list
+    this.subscription = this.changeList
+                            .subscribe(
+                              ({type, change}) => {
+                                if ((this.counter < 7 && change) || (this.counter > 0 && !change)) {
+                                  change ? this.counter++ : this.counter--;
+                                }
+                                this.loadMusic =  this.movieObj
+                                                      .slice(this.counter * 6, (this.counter + 1) * 6);
+                              }, 
+                              error => {
+                                console.log(error);
+                              }
+                            );
     
   }
 
