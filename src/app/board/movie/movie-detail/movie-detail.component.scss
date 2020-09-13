@@ -8,8 +8,17 @@ mat-card {
     display: flex;
     flex-flow: column;
     align-items: center;
-    width: 10em;
+    width: 9.5em;
     height: 12em;
+}
+
+mat-card-title.title.mat-card-title {
+  height: 3em;
+  margin: 0;
+}
+
+mat-card.example-card.mat-card:hover {
+  background-color: gainsboro;
 }
 
 mat-card-title {

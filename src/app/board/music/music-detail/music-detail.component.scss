@@ -3,17 +3,27 @@
     width: 60px;
 }
 
+mat-card-title.title.mat-card-title {
+  height: 3em;
+  margin: 0;
+}
+
+mat-card.example-card.mat-card:hover {
+  background-color: gainsboro;
+}
+
 mat-card {
     margin: 0.25em;
     display: flex;
     flex-flow: column;
     align-items: center;
-    width: 10em;
+    width: 9.5em;
     height: 12em;
 }
 
 mat-card-title {
-    font-weight: 400
+  font-weight: 400;
+  margin: 0;
 }
 
 mat-card-actions {
@@ -24,3 +34,8 @@ mat-card-content {
     margin: 1em;
     margin-bottom: 0;
 }
+
+//.music-cover-img[_ngcontent-cml-c12] {
+//  height: 100px;
+//  width: -webkit-fill-available;
+//}

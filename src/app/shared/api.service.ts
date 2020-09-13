@@ -6,34 +6,22 @@ import { load } from '@angular/core/src/render3';
 @Injectable()
 export class ApiService {
 
+    URL = 'https://itunes.apple.com/search';
+
     constructor( private http: HttpClient ) {}
 
     subject = new Subject();
-    
+
     serviceUpdate(searched: string, mediaType: string) {
-        // const loaded =  this.http
-        // .get<[{resultCounts, results}]>('https://itunes.apple.com/search', {
-        //     params: new HttpParams()
-        //                     .set('term', searched ? searched : 'coldPlay')
-        //                     .set('country', 'ca')
-        //                     .set('limit', '6')
-        //                     .set('media', 'music')
-        // })
-            
-        // loaded.subscribe(result => {
-        //     this.subject.next(result);
-        // })
-        //this.subject.subscribe(result => console.log(result + " in service"));
+
         let loaded = null;
-        
+
         switch (mediaType) {
             case 'music':
                 loaded = this.musicLoad(searched);
                 loaded.subscribe(result => {
                         this.subject.next(result);
                     });
-                    console.log('in music')
-
                 break;
 
             case 'musicVideo':
@@ -41,7 +29,6 @@ export class ApiService {
                 loaded.subscribe(result => {
                         this.subject.next(result);
                     });
-                    console.log('in music video')
                 break;
 
             case 'movie':
@@ -49,52 +36,50 @@ export class ApiService {
                 loaded.subscribe(result => {
                         this.subject.next(result);
                     });
-                    console.log('in movie')
-
                 break;
-        
+
             default:
                 break;
         }
-        
+
     }
 
     musicLoad(termSearched?: string) {
 
         return this.http
-            .get<[{resultCounts, results}]>('https://itunes.apple.com/search', {
+            .get<[{resultCounts, results}]>(this.URL, {
                 params: new HttpParams()
                                 .set('term', termSearched ? termSearched : 'coldPlay')
                                 .set('country', 'ca')
-                                .set('limit', '6')
+                                .set('limit', '36')
                                 .set('media', 'music')
-            })
+            });
     }
 
-   
+
 
         musicVideoLoad(searchQuery?: string) {
 
         return this.http
-                    .get<[{resultCounts, results}]>('https://itunes.apple.com/search', {
+                    .get<[{resultCounts, results}]>(this.URL, {
                         params: new HttpParams()
                                         .set('term', searchQuery ? searchQuery : 'coldPlay')
                                         .set('country', 'ca')
-                                        .set('limit', '6')
+                                        .set('limit', '36')
                                         .set('media', 'musicVideo')
                     });
-        
+
     }
 
 
     moviesLoad(searchQuery?: string) {
 
         return this.http
-                    .get<[{resultCounts, results}]>('https://itunes.apple.com/search', {
+                    .get<[{resultCounts, results}]>(this.URL, {
                         params: new HttpParams()
                                         .set('term',  searchQuery ? searchQuery : 'coldPlay')
                                         .set('country', 'ca')
-                                        .set('limit', '6')
+                                        .set('limit', '36')
                                         .set('media', 'movie')
                     });
     }

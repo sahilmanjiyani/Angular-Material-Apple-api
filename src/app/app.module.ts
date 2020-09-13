@@ -20,6 +20,7 @@ import { DialogComponent } from './dialog/dialog.component';
 import { MovieComponent } from './board/movie/movie.component';
 import { MovieDetailComponent } from './board/movie/movie-detail/movie-detail.component';
 import { HeaderComponent } from './board/header/header.component';
+import {CountService} from './shared/count.service';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,7 @@ import { HeaderComponent } from './board/header/header.component';
     BrowserAnimationsModule,
     MaterialModule
   ],
-  providers: [LoginService, ApiService],
+  providers: [LoginService, ApiService, CountService],
   bootstrap: [AppComponent],
   entryComponents: [
     DialogComponent

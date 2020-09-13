@@ -1,19 +1,19 @@
 <mat-card class="example-card">
   <mat-card-header>
-      <mat-card-title>
-          {{ 
-            (itemDetail.trackName.length > 20) ?  
+      <mat-card-title class="title">
+          {{
+            (itemDetail.trackName.length > 20) ?
             itemDetail.trackName.slice(0,15) + '...' :  itemDetail.trackName.slice(0,20)
          }}
       </mat-card-title>
     </mat-card-header>
-    <img 
-      class="music-cover-img" 
-      mat-card-image 
-      [src]="itemDetail.artworkUrl100"  
+    <img
+      class="music-cover-img"
+      mat-card-image
+      [src]="itemDetail.artworkUrl100"
       [alt]="itemDetail.collectionName" >
     <mat-card-actions>
-      <button 
+      <button
           mat-stroked-button
           (click)="openDialog()" >Play</button>
     </mat-card-actions>
