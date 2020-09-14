@@ -23,6 +23,7 @@ export class HeaderComponent implements OnInit {
     { value: "movie", viewValue: "Movie"}
   ];
 
+  options = [ 'Taylor', 'Coldplay'];
   constructor( private apiService: ApiService ) { }
 
   ngOnInit() {
@@ -30,7 +31,7 @@ export class HeaderComponent implements OnInit {
 
   onSubmit(form: NgForm) {
     const searchedText = form.value['searchText'];
-    const mediaContent = form.value['mediaSelect']
+    const mediaContent = form.value['mediaSelect'];
     this.apiService.serviceUpdate(searchedText, mediaContent);
   }
 

@@ -25,13 +25,11 @@ export class BoardComponent implements OnInit {
         console.log(change + ' ' + this.changeMusics);
         break;
       }
-
       case 'musicVideos': {
         change ? this.changeMusicVideos++ : this.changeMusicVideos--;
         console.log(change + ' ' + this.changeMusicVideos);
         break;
       }
-
       case 'movies': {
         change ? this.changeMovies++ : this.changeMovies--;
         console.log(change + ' ' + this.changeMovies);
